@@ -1,5 +1,8 @@
 import pygame
+import Client
+import time
 pygame.init()
+
 
 # Define some colors
 BLACK = ( 0, 0, 0)
@@ -8,6 +11,9 @@ GREY = (128,128,128)
 BLUE = ( 0, 0, 255)
 GREEN = ( 0, 255, 0)
 RED = ( 255, 0, 0)
+
+print("IS CLIENT")
+Client.connect()
 
 room_width = 1280
 room_height = 720
@@ -18,12 +24,10 @@ fascistBoard = pygame.image.load("sprites\FascistBoard.png")
 liberalBoard = pygame.image.load("sprites\LiberalBoard.png")
 fascistBoard = pygame.transform.scale(fascistBoard, (room_width-450,260))
 liberalBoard = pygame.transform.scale(liberalBoard, (room_width-450,260))
-
 # The loop will carry on until the user exit the game (e.g. clicks the close button).
 carryOn = True
 # The clock will be used to control how fast the screen updates
 clock = pygame.time.Clock()
- 
 # -------- Main Program Loop -----------
 while carryOn:
     # --- Main event loop 
@@ -45,6 +49,7 @@ while carryOn:
         pygame.draw.rect(screen, RED, [225, 100, room_width-450, room_height-200],2)
         if click[0] == 1:
             pygame.draw.rect(screen, BLUE, [225, 100, room_width-450, room_height-200],2)
+            Client.threadedFunction('isReady')
     else:
         pygame.draw.rect(screen, BLACK, [225, 100, room_width-450, room_height-200],2)
 
