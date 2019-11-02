@@ -97,13 +97,16 @@ while carryOn:
     screen.blit(liberalBoard, (libBoardX, libBoardY))
     #The you can draw different shapes and lines or add text to your background stage.
 
-    button.DrawButton(10,10,100,100,"Ready!",screen)
+    ready = button.DrawButton(10,10,100,100,"Ready!",screen)
     endGame = button.DrawButton(10,120,100,100,"Exit",screen)
     addLib = button.DrawButton(20,room_height-80,240,60,"Add liberal law {0}".format(libLaw),screen)
     addFas = button.DrawButton(280,room_height-80,240,60,"Add fascist law {0}".format(fasLaw),screen)
     drawCard = button.DrawButton(20,room_height-330,200,200,"Draw three laws!",screen)
     mousePos = pygame.mouse.get_pos()
     mousePressed = pygame.mouse.get_pressed()
+
+    if ready:
+        Client.isReady()
 
     if picking == 1:
         for i in range(0,len(indexCard)):
